@@ -1,81 +1,38 @@
-﻿int count1 = 0;
-int count2 = 0;
-int count3 = 0;
-int count4 = 0;
-int count5 = 0;
-int count6 = 0;
-int count7 = 0;
-int count8 = 0;
-int count9 = 0;
-int count0 = 0;
+﻿using ChallengeApp;
 
-Console.WriteLine("Enter number");
-int number = Convert.ToInt32(Console.ReadLine());
+int score = 0,
+    highestScore = 0,
+    employeeIndex = 0;
 
-string numberInString = number.ToString();
-char[] letters = numberInString.ToArray();
+Employee[] employees = { new("Wojtek", "Jarzynski", 48), new("Filip", "Nowak", 67), new("Jacek", "Lewandowski", 21), new("Damian", "Mickiewicz", 14) };
 
-foreach (char letter in letters)
+// Nadawanie pracownikom ocen
+employees[0].AddScore(1);
+employees[0].AddScore(7);
+employees[0].AddScore(3);
+employees[0].AddScore(4);
+
+employees[1].AddScore(9);
+employees[1].AddScore(10);
+employees[1].AddScore(1);
+employees[1].AddScore(7);
+
+employees[2].AddScore(5);
+employees[2].AddScore(2);
+employees[2].AddScore(8);
+employees[2].AddScore(5);
+
+// Wyszukiwanie pracownika z najwieksza suma ocen
+for (int i = 0; i < employees.Length; i++)
 {
-    if (letter == '1')
+    score = employees[i].Result;
+    if (score > highestScore)
     {
-        count1++;
-    }
-    else if (letter == '2')
-    {
-        count2++;
-    }
-    else if (letter == '3')
-    {
-        count3++;
-    }
-    else if (letter == '4')
-    {
-        count4++;
-    }
-    else if (letter == '5')
-    {
-        count5++;
-    }
-    else if (letter == '6') 
-    {
-        count6++;
-    }
-    else if (letter == '7')
-    {
-        count7++;
-    }
-    else if (letter == '8')
-    {
-        count8++;
-    }
-    else if (letter == '9')
-    {
-        count9++;
-    }
-    else if (letter == '0') 
-    {
-        count0++;
+        highestScore = score;
+        employeeIndex = i;
     }
 }
 
-Console.WriteLine("Ilość 0:");
-Console.WriteLine(count0);
-Console.WriteLine("Ilość 1:");
-Console.WriteLine(count1);
-Console.WriteLine("Ilość 2:");
-Console.WriteLine(count2);
-Console.WriteLine("Ilość 3:");
-Console.WriteLine(count3);
-Console.WriteLine("Ilość 4:");
-Console.WriteLine(count4);
-Console.WriteLine("Ilość 5:");
-Console.WriteLine(count5);
-Console.WriteLine("Ilość 6:");
-Console.WriteLine(count6);
-Console.WriteLine("Ilość 7:");
-Console.WriteLine(count7);
-Console.WriteLine("Ilość 8:");
-Console.WriteLine(count8);
-Console.WriteLine("Ilość 9:");
-Console.WriteLine(count9);
+// Wyswietlenie danych i wyniku najlepszego pracownika (z najwieksza liczba sumy ocen)
+Console.WriteLine($"Najlepszym pracownikiem jest {employees[employeeIndex].FirstName} " +
+    $"{employees[employeeIndex].LastName} ktory ma  {employees[employeeIndex].Age} lat z wynikiem {highestScore}");
